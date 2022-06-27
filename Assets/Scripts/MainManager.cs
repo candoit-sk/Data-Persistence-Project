@@ -17,11 +17,14 @@ public class MainManager : MonoBehaviour
     private int m_Points;
     
     private bool m_GameOver = false;
-
-    
+    [SerializeField] Text playerName;
+    [SerializeField] GameObject highScoreButton;
+    InputHandler inputHandler = new InputHandler();
     // Start is called before the first frame update
     void Start()
     {
+        inputHandler.LoadData();
+        playerName.text = InputManager.Instance.PlayerName;
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -61,7 +64,6 @@ public class MainManager : MonoBehaviour
             }
         }
     }
-
     void AddPoint(int point)
     {
         m_Points += point;
@@ -70,6 +72,8 @@ public class MainManager : MonoBehaviour
 
     public void GameOver()
     {
+        inputHandler.AddHighScoreIfPoisble(new InputEntry(playerName.text, m_Points));
+        highScoreButton.SetActive(true);
         m_GameOver = true;
         GameOverText.SetActive(true);
     }
