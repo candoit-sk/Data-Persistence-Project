@@ -809,6 +809,7 @@ MonoBehaviour:
   ScoreText: {fileID: 188020406}
   GameOverText: {fileID: 474497238}
   playerName: {fileID: 1845468073}
+  bestPlayer: {fileID: 2078529056}
   highScoreButton: {fileID: 177333210}
 --- !u!1 &455529321
 GameObject:

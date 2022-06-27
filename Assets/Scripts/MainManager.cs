@@ -18,13 +18,14 @@ public class MainManager : MonoBehaviour
     
     private bool m_GameOver = false;
     [SerializeField] Text playerName;
+    [SerializeField] Text bestPlayer;
     [SerializeField] GameObject highScoreButton;
     InputHandler inputHandler = new InputHandler();
     // Start is called before the first frame update
     void Start()
     {
         inputHandler.LoadData();
-        playerName.text = InputManager.Instance.PlayerName;
+        UpdateBestScore();
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -40,7 +41,11 @@ public class MainManager : MonoBehaviour
             }
         }
     }
-
+    void UpdateBestScore()
+    {
+        bestPlayer.text = "Best Score: " + inputHandler.getBestScoreEntry.playerName + " : " + inputHandler.getBestScoreEntry.points;
+        playerName.text = InputManager.Instance.PlayerName;
+    }
     private void Update()
     {
         if (!m_Started)
